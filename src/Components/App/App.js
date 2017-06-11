@@ -11,29 +11,31 @@ import {
 } from 'react-router-dom';
 import './App.css';
 
-import * as firebase from 'firebase'
+import array from "../../array.json"
+
+// import * as firebase from 'firebase'
 
 class App extends Component {
     constructor() {
         super();
         this.state = {
             userSession: null,
-            arrayUsers: [],
+            arrayUsers: array.Users,
             userId: null,
-            arrayKeys: []
+            arrayKeys: array.Keys
         };
         this.userVerification = this.userVerification.bind(this);
     }
 
-    componentDidMount(){
-        const Ref = firebase.database().ref();
-        Ref.on('value', snap => {
-            this.setState({
-                arrayKeys: snap.val().Keys,
-                arrayUsers: snap.val().Users
-            });
-        })
-    }
+    // componentDidMount(){
+    //     const Ref = firebase.database().ref();
+    //     Ref.on('value', snap => {
+    //         this.setState({
+    //             arrayKeys: snap.val().Keys,
+    //             arrayUsers: snap.val().Users
+    //         });
+    //     })
+    // }
 
     userVerification(value, index) {
         this.setState({

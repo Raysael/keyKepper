@@ -34,7 +34,7 @@ class TableBody extends Component {
         };
 
         const keys = this.props.keyArray.map((item, index) => {
-            return <PasswordList key={index} item={item} index={this.props.keyArray.indexOf(item)} userId={this.props.userId} keyArray={this.props.keyArray} edit={false}/>
+            return <PasswordList key={index} item={item} index={index} reloadPage={this.reloadPage} userId={this.props.userId} keyArray={this.props.keyArray} edit={false}/>
         });
 
         return (

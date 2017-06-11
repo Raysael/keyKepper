@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Editor from '../Editor/Editor'
 import './PasswordList.css'
-import * as firebase from 'firebase'
+// import * as firebase from 'firebase'
 
 class PasswordList extends Component {
 
@@ -46,7 +46,9 @@ class PasswordList extends Component {
     }
 
     deletePassword() {
-        firebase.database().ref().child('Keys').child(this.props.index).remove();
+        // firebase.database().ref().child('Keys').child(this.props.index).remove();
+        this.props.keyArray.splice(this.props.index, 1);
+        this.props.reloadPage()
     }
 
     getPasswordEditor(option) {

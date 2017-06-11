@@ -26,6 +26,7 @@ class AddedKey extends Component {
             //---need change---
             // firebase.database().ref().child('Keys').push(this.state); - //It breaks here (
         this.props.keyArray.push(this.state);
+            this.props.changeShowAddKey()
             //-----------------
         }
     }
