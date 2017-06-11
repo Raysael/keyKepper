@@ -7,7 +7,7 @@ class Table extends Component {
         return (
             <div className="table">
                 <TableHeader/>
-                <TableBody keyArray={this.props.keyArray}/>
+                <TableBody keyArray={this.props.keyArray} userId={this.props.userId}/>
             </div>
         )
     }

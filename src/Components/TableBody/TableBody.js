@@ -26,7 +26,7 @@ class TableBody extends Component {
 
         const GetMenuAddKey = () => {
             if (this.state.showAddKey === true) {
-                return <AddedKey changeShowAddKey={this.changeShowAddKey} keyArray={this.props.keyArray}/>
+                return <AddedKey changeShowAddKey={this.changeShowAddKey} keyArray={this.props.keyArray} userId={this.props.userId}/>
             }
             else {
                 return <button className="list-new__btn-add" onClick={this.changeShowAddKey}>Add</button>
@@ -34,7 +34,7 @@ class TableBody extends Component {
         };
 
         const keys = this.props.keyArray.map((item, index) => {
-            return <PasswordList key={index} item={item} index={index} keyArray={this.props.keyArray} reloadPage={this.reloadPage} edit={false}/>
+            return <PasswordList key={index} item={item} index={this.props.keyArray.indexOf(item)} userId={this.props.userId} keyArray={this.props.keyArray} edit={false}/>
         });
 
         return (

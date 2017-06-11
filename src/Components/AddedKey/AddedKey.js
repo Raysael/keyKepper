@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import './AddedKey.css'
+import './AddedKey.css';
+// import * as firebase from 'firebase';
 
 class AddedKey extends Component {
     constructor(props) {
@@ -7,7 +8,8 @@ class AddedKey extends Component {
         this.state = {
             name: '',
             password: '',
-            source: ''
+            source: '',
+            idUser: this.props.userId
         };
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
@@ -22,8 +24,8 @@ class AddedKey extends Component {
         e.preventDefault();
         if(this.state.name !== '' && this.state.password !== '') {
             //---need change---
-            this.props.keyArray.push(this.state);
-            this.props.changeShowAddKey()
+            // firebase.database().ref().child('Keys').push(this.state); - //It breaks here (
+        this.props.keyArray.push(this.state);
             //-----------------
         }
     }

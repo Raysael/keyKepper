@@ -1,0 +1,45 @@
+{
+    "Keys" : [
+    {
+        "idUser": "0",
+        "name": "ololo",
+        "source": "http://ololo.com",
+        "password": "qwerty1"
+    },
+        {
+            "idUser": "0",
+            "name": "zozozo",
+            "source": "http://zozozo.com",
+            "password": "qwerty4"
+        },
+    {
+        "idUser": "1",
+        "name": "kokoko",
+        "source": "http://kokoko.com",
+        "password": "qwerty2"
+    },
+    {
+        "idUser": "2",
+        "name": "bugaga",
+        "source": "http://bugaga.com",
+        "password": "qwerty3"
+    }
+],
+    "Users" : [
+        {
+            "username": "Andrii",
+            "password": "qwerty1",
+            "email": "test1@mail.test"
+        },
+        {
+            "username": "John",
+            "password": "qwerty2",
+            "email": "test2@mail.test"
+        },
+        {
+            "username": "Frank",
+            "password": "qwerty3",
+            "email": "test3@mail.test"
+        }
+    ]
+}

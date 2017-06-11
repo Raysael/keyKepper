@@ -1,10 +1,9 @@
-import React, {Component} from 'react';
+import React,{Component} from 'react';
 import Navbar from '../Navbar/Navbar'
 import Main from "../Main/Main";
 import SignIn from '../SignIn/SignIn';
 import SignUp from '../SignUp/SignUp';
-import StartPage from '../StartPage/StartPage'
-
+import StartPage from '../StartPage/StartPage';
 import {
     BrowserRouter as Router,
     Route,
@@ -12,32 +11,43 @@ import {
 } from 'react-router-dom';
 import './App.css';
 
-import arrayKeyNoProduction from '../../array';
-import arrayUserNoProduction from '../../arrayUsers';
+import * as firebase from 'firebase'
 
 class App extends Component {
     constructor() {
         super();
         this.state = {
-            userSession: null
+            userSession: null,
+            arrayUsers: [],
+            userId: null,
+            arrayKeys: []
         };
         this.userVerification = this.userVerification.bind(this);
     }
 
-    userVerification(value) {
-        this.setState({userSession: value});
+    componentDidMount(){
+        const Ref = firebase.database().ref();
+        Ref.on('value', snap => {
+            this.setState({
+                arrayKeys: snap.val().Keys,
+                arrayUsers: snap.val().Users
+            });
+        })
+    }
+
+    userVerification(value, index) {
+        this.setState({
+            userSession: value,
+            userId: index
+        });
         this.props.history.push("/")
     }
 
     render() {
-
-        let keyArray = arrayKeyNoProduction;
-        let userArray = arrayUserNoProduction;
-
         const GetRootPage = () => <StartPage signin={signin} signup={signup}/>;
 
-        const GetSignUp = () => <SignUp userArray={userArray}/>;
-        const GetSignIn = () => <SignIn userArray={userArray} userVerification={this.userVerification}/>;
+        const GetSignUp = () => <SignUp userArray={this.state.arrayUsers}/>;
+        const GetSignIn = () => <SignIn userArray={this.state.arrayUsers} userVerification={this.userVerification}/>;
 
         const home = (<Link to="/"><span>&#10026;</span> key keeper</Link>);
         const signin = (<Link to="/sign_in">SignIn</Link>);
@@ -55,7 +65,7 @@ class App extends Component {
             }
             else{
                     return (
-                        <Main userLogin={this.state.userSession} keyArray={keyArray}/>
+                        <Main userLogin={this.state.userSession} keyArray={this.state.arrayKeys} userId={this.state.userId}/>
                     )
                 }
 
@@ -71,6 +81,5 @@ class App extends Component {
         );
     }
 }
-
 
 export default App;

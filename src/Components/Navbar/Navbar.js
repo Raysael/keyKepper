@@ -23,7 +23,7 @@ const SingOrOut = (x, signin, signup, signout) => {
 class Navbar extends Component {
     render() {
         const signout = () => {
-            this.props.userVerification(null);
+            this.props.userVerification(null, null);
         };
         return (
             <div className="navbar">

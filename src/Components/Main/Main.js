@@ -12,7 +12,7 @@ class Main extends Component {
         return (
             <Router>
                 <div className="main">
-                    <MainBody userLogin={this.props.userLogin} keyArray={this.props.keyArray}/>
+                    <MainBody userLogin={this.props.userLogin} keyArray={this.props.keyArray} userId={this.props.userId}/>
                 </div>
             </Router>
         );

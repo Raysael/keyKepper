@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Editor from '../Editor/Editor'
 import './PasswordList.css'
+import * as firebase from 'firebase'
 
 class PasswordList extends Component {
 
@@ -45,38 +46,38 @@ class PasswordList extends Component {
     }
 
     deletePassword() {
-        //---need change---
-        this.props.keyArray.splice(this.props.index, 1);
-        //-----------------
-        this.props.reloadPage()
+        firebase.database().ref().child('Keys').child(this.props.index).remove();
     }
 
     getPasswordEditor(option) {
 
         const editor = (option) => {
+
             if (option === false) {
-                return (
-                    <li className='table-body-list'>
-                        <div className="list-items">
-                            <div className="list-items__item">{this.props.item.name}</div>
-                            <div className="list-items__item">{this.revealPasswordStars(this.props.item.password)}</div>
-                            <div className="list-items__item">{this.props.item.source}</div>
-                        </div>
-                        <div className="list-menu">
-                            <button className="list-menu__btn">
-                                <label>
-                                    reveal password
-                                    <input
-                                        name={'reveal_' + this.props.index}
-                                        type="checkbox"
-                                        onChange={this.handleInputChange}/>
-                                </label>
-                            </button>
-                            <button className="list-menu__btn" onClick={this.editPassword}>edit</button>
-                            <button className="list-menu__btn" onClick={this.deletePassword}>delete</button>
-                        </div>
-                    </li>
-                )
+                if(this.props.userId === this.props.item.idUser){
+                    return (
+                        <li className='table-body-list'>
+                            <div className="list-items">
+                                <div className="list-items__item">{this.props.item.name}</div>
+                                <div className="list-items__item">{this.revealPasswordStars(this.props.item.password)}</div>
+                                <div className="list-items__item">{this.props.item.source}</div>
+                            </div>
+                            <div className="list-menu">
+                                <button className="list-menu__btn">
+                                    <label>
+                                        reveal password
+                                        <input
+                                            name={'reveal_' + this.props.index}
+                                            type="checkbox"
+                                            onChange={this.handleInputChange}/>
+                                    </label>
+                                </button>
+                                <button className="list-menu__btn" onClick={this.editPassword}>edit</button>
+                                <button className="list-menu__btn" onClick={this.deletePassword}>delete</button>
+                            </div>
+                        </li>
+                    )
+                }
             }
             else {
                 return (<Editor item={this.props.item} index={this.props.index} keyArray={this.props.keyArray} editPassword={this.editPassword}/>)

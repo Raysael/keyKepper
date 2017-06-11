@@ -22,7 +22,7 @@ class SignIn extends Component {
             const users = this.props.userArray;
             for (let item in users) {
                 if (users[item].username === this.state.username && users[item].password === this.state.password) {
-                    this.props.userVerification(users[item].username);
+                    this.props.userVerification(users[item].username, item);
                 }
             }
 
