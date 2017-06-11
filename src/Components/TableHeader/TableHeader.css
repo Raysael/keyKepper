@@ -1,0 +1,23 @@
+.table-header {
+    background-color: darkslateblue;
+    width: 80%;
+    margin: 0 auto;
+    border-radius: 10px 10px 0 0;
+}
+.table-header-title {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    padding: 25px 45px 15px;
+    box-sizing: border-box;
+}
+
+.table-header-title__item {
+    width: 30%;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 18px;
+    text-align: left;
+    line-height: 24px;
+    color: #dbdbdb;
+}
